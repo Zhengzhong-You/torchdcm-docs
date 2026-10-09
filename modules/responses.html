@@ -1,0 +1,1596 @@
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      
+        <link rel="prev" href="estimation.html">
+      
+      
+        <link rel="next" href="../examples/index.html">
+      
+      
+      <link rel="icon" href="../_static/favicon.svg">
+    
+    
+      
+        <title>Response laws and behavioral mechanisms - TorchDCM documentation</title>
+      
+    
+    
+      
+        
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+    
+        <link rel="stylesheet" type="text/css" href="../_static/sphinx_immaterial_theme.cf2c65c97ee1b6f01.min.css?v=0a68cab4" />
+        <link rel="stylesheet" type="text/css" href="../_static/docs.css?v=2b44c00a" />
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="deep-orange">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#api-reference" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../index.html" title="TorchDCM documentation" class="md-header__button md-logo" aria-label="TorchDCM documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            TorchDCM documentation
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Response laws and behavioral mechanisms
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="deep-orange"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="orange"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/mbc96325/torchdcm" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    TorchDCM
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="TorchDCM documentation" class="md-nav__button md-logo" aria-label="TorchDCM documentation" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+    </a>
+    TorchDCM documentation
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/mbc96325/torchdcm" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+  </div>
+  <div class="md-source__repository">
+    TorchDCM
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    <span>Get started</span>
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            <span>Get started</span>
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting_started.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>Installation and first model</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../architecture.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>How the modules fit together</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    <span>Modules</span>
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            <span>Modules</span>
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="data.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>Data and observation units</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="models.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>Choice models and custom utilities</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="composition.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>Joint responses and latent integration</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="sequence.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>Histories and hidden states</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="implicit.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>Inner problems, dynamic choice and paths</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="estimation.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>Estimation, inference and queries</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    <span>Response laws and behavioral mechanisms</span>
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="#" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>Response laws and behavioral mechanisms</span>
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#api-reference" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>API reference</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="API reference">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#torchdcm.events.event_log_probs" class="md-nav__link">
+    
+      <span aria-label="Python function" class="objinfo-icon objinfo-icon__procedure" title="Python function">F</span>
+    
+    <span class="md-ellipsis">
+      <span title="torchdcm.events.event_log_probs (Python function) — Normalize arbitrary finite event scores, with an explicit feasibility mask."><span>event_<wbr>log_<wbr>probs</span></span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torchdcm.events.ranking_log_prob" class="md-nav__link">
+    
+      <span aria-label="Python function" class="objinfo-icon objinfo-icon__procedure" title="Python function">F</span>
+    
+    <span class="md-ellipsis">
+      <span title="torchdcm.events.ranking_log_prob (Python function) — Plackett-Luce strict top-k. Unranked menu items remain competitors."><span>ranking_<wbr>log_<wbr>prob</span></span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torchdcm.events.tied_ranking_log_prob" class="md-nav__link">
+    
+      <span aria-label="Python function" class="objinfo-icon objinfo-icon__procedure" title="Python function">F</span>
+    
+    <span class="md-ellipsis">
+      <span title="torchdcm.events.tied_ranking_log_prob (Python function) — Davidson-Luce ordered groups, ties of order &lt;=2, exact normalization."><span>tied_<wbr>ranking_<wbr>log_<wbr>prob</span></span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torchdcm.events.best_worst_log_prob" class="md-nav__link">
+    
+      <span aria-label="Python function" class="objinfo-icon objinfo-icon__procedure" title="Python function">F</span>
+    
+    <span class="md-ellipsis">
+      <span title="torchdcm.events.best_worst_log_prob (Python function) — Sequential best then worst, or joint MaxDiff pair normalization."><span>best_<wbr>worst_<wbr>log_<wbr>prob</span></span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torchdcm.events.subset_masks" class="md-nav__link">
+    
+      <span aria-label="Python function" class="objinfo-icon objinfo-icon__procedure" title="Python function">F</span>
+    
+    <span class="md-ellipsis">
+      <span title="torchdcm.events.subset_masks (Python function) — Exact small-menu enumeration; caller owns constraints on feasible subsets."><span>subset_<wbr>masks</span></span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torchdcm.allocation.mdcev_log_prob" class="md-nav__link">
+    
+      <span aria-label="Python function" class="objinfo-icon objinfo-icon__procedure" title="Python function">F</span>
+    
+    <span class="md-ellipsis">
+      <span title="torchdcm.allocation.mdcev_log_prob (Python function) — Mixed corner mass/face density, iid unit-scale Gumbel shocks, alpha=0."><span>mdcev_<wbr>log_<wbr>prob</span></span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torchdcm.allocation.mdcev_allocate" class="md-nav__link">
+    
+      <span aria-label="Python function" class="objinfo-icon objinfo-icon__procedure" title="Python function">F</span>
+    
+    <span class="md-ellipsis">
+      <span title="torchdcm.allocation.mdcev_allocate (Python function) — Optimal quantities for specified shocks (zero shocks if omitted)."><span>mdcev_<wbr>allocate</span></span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torchdcm.mechanisms.consideration_log_probs" class="md-nav__link">
+    
+      <span aria-label="Python function" class="objinfo-icon objinfo-icon__procedure" title="Python function">F</span>
+    
+    <span class="md-ellipsis">
+      <span title="torchdcm.mechanisms.consideration_log_probs (Python function) — Exact mixture over declared small consideration sets, with an outside good."><span>consideration_<wbr>log_<wbr>probs</span></span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torchdcm.mechanisms.SetUtility" class="md-nav__link">
+    
+      <span aria-label="Python class" class="objinfo-icon objinfo-icon__data" title="Python class">C</span>
+    
+    <span class="md-ellipsis">
+      <span title="torchdcm.mechanisms.SetUtility (Python class) — Permutation-equivariant scores from any shared encoder and scalar head."><span>Set<wbr>Utility</span></span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torchdcm.continuous.censored_normal_log_prob" class="md-nav__link">
+    
+      <span aria-label="Python function" class="objinfo-icon objinfo-icon__procedure" title="Python function">F</span>
+    
+    <span class="md-ellipsis">
+      <span title="torchdcm.continuous.censored_normal_log_prob (Python function) — Two-sided censoring: endpoint atoms plus density in the open interval."><span>censored_<wbr>normal_<wbr>log_<wbr>prob</span></span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torchdcm.continuous.truncated_normal_log_prob" class="md-nav__link">
+    
+      <span aria-label="Python function" class="objinfo-icon objinfo-icon__procedure" title="Python function">F</span>
+    
+    <span class="md-ellipsis">
+      <span title="torchdcm.continuous.truncated_normal_log_prob (Python function) — Density conditional on being strictly inside the declared observation interval."><span>truncated_<wbr>normal_<wbr>log_<wbr>prob</span></span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torchdcm.continuous.selection_normal_log_prob" class="md-nav__link">
+    
+      <span aria-label="Python function" class="objinfo-icon objinfo-icon__procedure" title="Python function">F</span>
+    
+    <span class="md-ellipsis">
+      <span title="torchdcm.continuous.selection_normal_log_prob (Python function) — Joint Gaussian sample-selection likelihood, including unselected records."><span>selection_<wbr>normal_<wbr>log_<wbr>prob</span></span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torchdcm.probit.multinomial_probit_log_probs" class="md-nav__link">
+    
+      <span aria-label="Python function" class="objinfo-icon objinfo-icon__procedure" title="Python function">F</span>
+    
+    <span class="md-ellipsis">
+      <span title="torchdcm.probit.multinomial_probit_log_probs (Python function) — Three full-menu alternatives, correlated normal errors, fixed scale/location."><span>multinomial_<wbr>probit_<wbr>log_<wbr>probs</span></span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torchdcm.response_time.ddm_log_prob" class="md-nav__link">
+    
+      <span aria-label="Python function" class="objinfo-icon objinfo-icon__procedure" title="Python function">F</span>
+    
+    <span class="md-ellipsis">
+      <span title="torchdcm.response_time.ddm_log_prob (Python function) — Unit diffusion, fixed a/z/nondecision time; trainable drift, no trial variability."><span>ddm_<wbr>log_<wbr>prob</span></span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torchdcm.equilibrium.rational_inattention" class="md-nav__link">
+    
+      <span aria-label="Python function" class="objinfo-icon objinfo-icon__procedure" title="Python function">F</span>
+    
+    <span class="md-ellipsis">
+      <span title="torchdcm.equilibrium.rational_inattention (Python function) — Finite-state Shannon RI; strictly positive regular action support only."><span>rational_<wbr>inattention</span></span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torchdcm.equilibrium.social_probabilities" class="md-nav__link">
+    
+      <span aria-label="Python function" class="objinfo-icon objinfo-icon__procedure" title="Python function">F</span>
+    
+    <span class="md-ellipsis">
+      <span title="torchdcm.equilibrium.social_probabilities (Python function) — Unique binary-logit mean-field fixed point; row-stochastic nonnegative network."><span>social_<wbr>probabilities</span></span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torchdcm.equilibrium.dynamic_game_values" class="md-nav__link">
+    
+      <span aria-label="Python function" class="objinfo-icon objinfo-icon__procedure" title="Python function">F</span>
+    
+    <span class="md-ellipsis">
+      <span title="torchdcm.equilibrium.dynamic_game_values (Python function) — Two-player, binary-action, finite-public-state dynamic Logit game."><span>dynamic_<wbr>game_<wbr>values</span></span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torchdcm.trajectory.finite_horizon" class="md-nav__link">
+    
+      <span aria-label="Python function" class="objinfo-icon objinfo-icon__procedure" title="Python function">F</span>
+    
+    <span class="md-ellipsis">
+      <span title="torchdcm.trajectory.finite_horizon (Python function) — reward[T,S,A], transition broadcastable to [T,S,A,S]."><span>finite_<wbr>horizon</span></span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torchdcm.supply.bertrand_markups" class="md-nav__link">
+    
+      <span aria-label="Python function" class="objinfo-icon objinfo-icon__procedure" title="Python function">F</span>
+    
+    <span class="md-ellipsis">
+      <span title="torchdcm.supply.bertrand_markups (Python function) — Solve differentiated-product FOCs, holding supplied structural errors fixed."><span>bertrand_<wbr>markups</span></span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torchdcm.supply.bertrand_prices" class="md-nav__link">
+    
+      <span aria-label="Python function" class="objinfo-icon objinfo-icon__procedure" title="Python function">F</span>
+    
+    <span class="md-ellipsis">
+      <span title="torchdcm.supply.bertrand_prices (Python function) — One regular interior price-equilibrium root; user selects the starting branch."><span>bertrand_<wbr>prices</span></span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    <span>Use and extend</span>
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            <span>Use and extend</span>
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../examples/index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>Complete examples</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../performance.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>Computational performance</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../extension.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>Build a new module with an agent</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../citation.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    <span>Cite and reuse</span>
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#api-reference" class="md-nav__link">
+    
+    <span class="md-ellipsis">
+      <span>API reference</span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="API reference">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#torchdcm.events.event_log_probs" class="md-nav__link">
+    
+      <span aria-label="Python function" class="objinfo-icon objinfo-icon__procedure" title="Python function">F</span>
+    
+    <span class="md-ellipsis">
+      <span title="torchdcm.events.event_log_probs (Python function) — Normalize arbitrary finite event scores, with an explicit feasibility mask."><span>event_<wbr>log_<wbr>probs</span></span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torchdcm.events.ranking_log_prob" class="md-nav__link">
+    
+      <span aria-label="Python function" class="objinfo-icon objinfo-icon__procedure" title="Python function">F</span>
+    
+    <span class="md-ellipsis">
+      <span title="torchdcm.events.ranking_log_prob (Python function) — Plackett-Luce strict top-k. Unranked menu items remain competitors."><span>ranking_<wbr>log_<wbr>prob</span></span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torchdcm.events.tied_ranking_log_prob" class="md-nav__link">
+    
+      <span aria-label="Python function" class="objinfo-icon objinfo-icon__procedure" title="Python function">F</span>
+    
+    <span class="md-ellipsis">
+      <span title="torchdcm.events.tied_ranking_log_prob (Python function) — Davidson-Luce ordered groups, ties of order &lt;=2, exact normalization."><span>tied_<wbr>ranking_<wbr>log_<wbr>prob</span></span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torchdcm.events.best_worst_log_prob" class="md-nav__link">
+    
+      <span aria-label="Python function" class="objinfo-icon objinfo-icon__procedure" title="Python function">F</span>
+    
+    <span class="md-ellipsis">
+      <span title="torchdcm.events.best_worst_log_prob (Python function) — Sequential best then worst, or joint MaxDiff pair normalization."><span>best_<wbr>worst_<wbr>log_<wbr>prob</span></span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torchdcm.events.subset_masks" class="md-nav__link">
+    
+      <span aria-label="Python function" class="objinfo-icon objinfo-icon__procedure" title="Python function">F</span>
+    
+    <span class="md-ellipsis">
+      <span title="torchdcm.events.subset_masks (Python function) — Exact small-menu enumeration; caller owns constraints on feasible subsets."><span>subset_<wbr>masks</span></span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torchdcm.allocation.mdcev_log_prob" class="md-nav__link">
+    
+      <span aria-label="Python function" class="objinfo-icon objinfo-icon__procedure" title="Python function">F</span>
+    
+    <span class="md-ellipsis">
+      <span title="torchdcm.allocation.mdcev_log_prob (Python function) — Mixed corner mass/face density, iid unit-scale Gumbel shocks, alpha=0."><span>mdcev_<wbr>log_<wbr>prob</span></span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torchdcm.allocation.mdcev_allocate" class="md-nav__link">
+    
+      <span aria-label="Python function" class="objinfo-icon objinfo-icon__procedure" title="Python function">F</span>
+    
+    <span class="md-ellipsis">
+      <span title="torchdcm.allocation.mdcev_allocate (Python function) — Optimal quantities for specified shocks (zero shocks if omitted)."><span>mdcev_<wbr>allocate</span></span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torchdcm.mechanisms.consideration_log_probs" class="md-nav__link">
+    
+      <span aria-label="Python function" class="objinfo-icon objinfo-icon__procedure" title="Python function">F</span>
+    
+    <span class="md-ellipsis">
+      <span title="torchdcm.mechanisms.consideration_log_probs (Python function) — Exact mixture over declared small consideration sets, with an outside good."><span>consideration_<wbr>log_<wbr>probs</span></span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torchdcm.mechanisms.SetUtility" class="md-nav__link">
+    
+      <span aria-label="Python class" class="objinfo-icon objinfo-icon__data" title="Python class">C</span>
+    
+    <span class="md-ellipsis">
+      <span title="torchdcm.mechanisms.SetUtility (Python class) — Permutation-equivariant scores from any shared encoder and scalar head."><span>Set<wbr>Utility</span></span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torchdcm.continuous.censored_normal_log_prob" class="md-nav__link">
+    
+      <span aria-label="Python function" class="objinfo-icon objinfo-icon__procedure" title="Python function">F</span>
+    
+    <span class="md-ellipsis">
+      <span title="torchdcm.continuous.censored_normal_log_prob (Python function) — Two-sided censoring: endpoint atoms plus density in the open interval."><span>censored_<wbr>normal_<wbr>log_<wbr>prob</span></span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torchdcm.continuous.truncated_normal_log_prob" class="md-nav__link">
+    
+      <span aria-label="Python function" class="objinfo-icon objinfo-icon__procedure" title="Python function">F</span>
+    
+    <span class="md-ellipsis">
+      <span title="torchdcm.continuous.truncated_normal_log_prob (Python function) — Density conditional on being strictly inside the declared observation interval."><span>truncated_<wbr>normal_<wbr>log_<wbr>prob</span></span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torchdcm.continuous.selection_normal_log_prob" class="md-nav__link">
+    
+      <span aria-label="Python function" class="objinfo-icon objinfo-icon__procedure" title="Python function">F</span>
+    
+    <span class="md-ellipsis">
+      <span title="torchdcm.continuous.selection_normal_log_prob (Python function) — Joint Gaussian sample-selection likelihood, including unselected records."><span>selection_<wbr>normal_<wbr>log_<wbr>prob</span></span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torchdcm.probit.multinomial_probit_log_probs" class="md-nav__link">
+    
+      <span aria-label="Python function" class="objinfo-icon objinfo-icon__procedure" title="Python function">F</span>
+    
+    <span class="md-ellipsis">
+      <span title="torchdcm.probit.multinomial_probit_log_probs (Python function) — Three full-menu alternatives, correlated normal errors, fixed scale/location."><span>multinomial_<wbr>probit_<wbr>log_<wbr>probs</span></span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torchdcm.response_time.ddm_log_prob" class="md-nav__link">
+    
+      <span aria-label="Python function" class="objinfo-icon objinfo-icon__procedure" title="Python function">F</span>
+    
+    <span class="md-ellipsis">
+      <span title="torchdcm.response_time.ddm_log_prob (Python function) — Unit diffusion, fixed a/z/nondecision time; trainable drift, no trial variability."><span>ddm_<wbr>log_<wbr>prob</span></span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torchdcm.equilibrium.rational_inattention" class="md-nav__link">
+    
+      <span aria-label="Python function" class="objinfo-icon objinfo-icon__procedure" title="Python function">F</span>
+    
+    <span class="md-ellipsis">
+      <span title="torchdcm.equilibrium.rational_inattention (Python function) — Finite-state Shannon RI; strictly positive regular action support only."><span>rational_<wbr>inattention</span></span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torchdcm.equilibrium.social_probabilities" class="md-nav__link">
+    
+      <span aria-label="Python function" class="objinfo-icon objinfo-icon__procedure" title="Python function">F</span>
+    
+    <span class="md-ellipsis">
+      <span title="torchdcm.equilibrium.social_probabilities (Python function) — Unique binary-logit mean-field fixed point; row-stochastic nonnegative network."><span>social_<wbr>probabilities</span></span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torchdcm.equilibrium.dynamic_game_values" class="md-nav__link">
+    
+      <span aria-label="Python function" class="objinfo-icon objinfo-icon__procedure" title="Python function">F</span>
+    
+    <span class="md-ellipsis">
+      <span title="torchdcm.equilibrium.dynamic_game_values (Python function) — Two-player, binary-action, finite-public-state dynamic Logit game."><span>dynamic_<wbr>game_<wbr>values</span></span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torchdcm.trajectory.finite_horizon" class="md-nav__link">
+    
+      <span aria-label="Python function" class="objinfo-icon objinfo-icon__procedure" title="Python function">F</span>
+    
+    <span class="md-ellipsis">
+      <span title="torchdcm.trajectory.finite_horizon (Python function) — reward[T,S,A], transition broadcastable to [T,S,A,S]."><span>finite_<wbr>horizon</span></span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torchdcm.supply.bertrand_markups" class="md-nav__link">
+    
+      <span aria-label="Python function" class="objinfo-icon objinfo-icon__procedure" title="Python function">F</span>
+    
+    <span class="md-ellipsis">
+      <span title="torchdcm.supply.bertrand_markups (Python function) — Solve differentiated-product FOCs, holding supplied structural errors fixed."><span>bertrand_<wbr>markups</span></span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torchdcm.supply.bertrand_prices" class="md-nav__link">
+    
+      <span aria-label="Python function" class="objinfo-icon objinfo-icon__procedure" title="Python function">F</span>
+    
+    <span class="md-ellipsis">
+      <span title="torchdcm.supply.bertrand_prices (Python function) — One regular interior price-equilibrium root; user selects the starting branch."><span>bertrand_<wbr>prices</span></span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset" role="main">
+                
+                
+                  
+
+
+<h1 id="response-laws-and-behavioral-mechanisms">Response laws and behavioral mechanisms<a class="headerlink" href="#response-laws-and-behavioral-mechanisms" title="Link to this heading">¶</a></h1>
+<p>These functions evaluate model components. The application declares independent
+units, supplies compatible mechanisms, and chooses an estimator and query.</p>
+<table class="docutils data align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>Component</p></th>
+<th class="head"><p>Implemented scope</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Ranking and best-worst</p></td>
+<td><p>Strict top-k; ties up to order two; sequential or joint MaxDiff</p></td>
+</tr>
+<tr class="row-odd"><td><p>Subset choice</p></td>
+<td><p>Explicit enumeration of small feasible subsets</p></td>
+</tr>
+<tr class="row-even"><td><p>MDCEV allocation</p></td>
+<td><p>Gamma profile, fixed budget, positive outside good, unit shock scale</p></td>
+</tr>
+<tr class="row-odd"><td><p>Consideration sets</p></td>
+<td><p>Exact mixture over supplied sets containing an outside alternative</p></td>
+</tr>
+<tr class="row-even"><td><p>Correlated Probit</p></td>
+<td><p>Three alternatives; deterministic quadrature in a moderate-tail domain</p></td>
+</tr>
+<tr class="row-odd"><td><p>Continuous outcomes</p></td>
+<td><p>Gaussian intervals, censoring, truncation and correlated selection</p></td>
+</tr>
+<tr class="row-even"><td><p>Response time</p></td>
+<td><p>Unit diffusion, fixed boundary/start/nondecision time; drift estimation</p></td>
+</tr>
+<tr class="row-odd"><td><p>Equilibrium mechanisms</p></td>
+<td><p>Finite-state interior rational inattention; contraction-domain mean field;
+two-player binary-action dynamic games on one regular branch</p></td>
+</tr>
+<tr class="row-even"><td><p>Trajectories and supply</p></td>
+<td><p>Finite-horizon trajectory/causal laws; small interior Bertrand price roots</p></td>
+</tr>
+</tbody>
+</table>
+<p>Active-set changes and equilibrium selection require separate modeling work.
+MDCEV allocation queries differ from its observed mixed density. Global trajectory
+normalization and causal entropy use different laws under stochastic transitions.</p>
+<h2 id="api-reference">API reference<a class="headerlink" href="#api-reference" title="Link to this heading">¶</a></h2>
+<dl class="py function objdesc">
+<dt class="sig sig-object highlight py" id="torchdcm.events.event_log_probs">
+<span class="sig-name descname"><span class="pre">event_log_probs</span></span><span class="sig-paren">(</span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#torchdcm.events.event_log_probs" title="torchdcm.events.event_log_probs.scores (Python parameter)"><span class="n"><span class="pre">scores</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#torchdcm.events.event_log_probs" title="torchdcm.events.event_log_probs.available (Python parameter)"><span class="n"><span class="pre">available</span></span></a><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="kc">None</span></code></em></span><span class="sig-paren">)</span><a class="headerlink" href="#torchdcm.events.event_log_probs" title="Link to this definition">¶</a></dt>
+<dd><p>Normalize arbitrary finite event scores, with an explicit feasibility mask.</p>
+</dd></dl>
+
+<dl class="py function objdesc">
+<dt class="sig sig-object highlight py" id="torchdcm.events.ranking_log_prob">
+<span class="sig-name descname"><span class="pre">ranking_log_prob</span></span><span class="sig-paren">(</span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#torchdcm.events.ranking_log_prob" title="torchdcm.events.ranking_log_prob.scores (Python parameter)"><span class="n"><span class="pre">scores</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#torchdcm.events.ranking_log_prob" title="torchdcm.events.ranking_log_prob.ranking (Python parameter)"><span class="n"><span class="pre">ranking</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#torchdcm.events.ranking_log_prob" title="torchdcm.events.ranking_log_prob.available (Python parameter)"><span class="n"><span class="pre">available</span></span></a><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="kc">None</span></code></em></span><span class="sig-paren">)</span><a class="headerlink" href="#torchdcm.events.ranking_log_prob" title="Link to this definition">¶</a></dt>
+<dd><p>Plackett-Luce strict top-k. Unranked menu items remain competitors.</p>
+<p>ranking[…, stage] contains item indices, with optional trailing -1 padding.
+For rankings of a presented subset, declare that subset in available.</p>
+</dd></dl>
+
+<dl class="py function objdesc">
+<dt class="sig sig-object highlight py" id="torchdcm.events.tied_ranking_log_prob">
+<span class="sig-name descname"><span class="pre">tied_ranking_log_prob</span></span><span class="sig-paren">(</span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#torchdcm.events.tied_ranking_log_prob" title="torchdcm.events.tied_ranking_log_prob.scores (Python parameter)"><span class="n"><span class="pre">scores</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#torchdcm.events.tied_ranking_log_prob" title="torchdcm.events.tied_ranking_log_prob.groups (Python parameter)"><span class="n"><span class="pre">groups</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#torchdcm.events.tied_ranking_log_prob" title="torchdcm.events.tied_ranking_log_prob.log_tie (Python parameter)"><span class="n"><span class="pre">log_tie</span></span></a><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="mf">0.0</span></code></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#torchdcm.events.tied_ranking_log_prob" title="torchdcm.events.tied_ranking_log_prob.available (Python parameter)"><span class="n"><span class="pre">available</span></span></a><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="kc">None</span></code></em></span><span class="sig-paren">)</span><a class="headerlink" href="#torchdcm.events.tied_ranking_log_prob" title="Link to this definition">¶</a></dt>
+<dd><p>Davidson-Luce ordered groups, ties of order &lt;=2, exact normalization.</p>
+<p>groups[…, stage, item] is boolean; empty trailing groups are padding.
+log_tie is log(delta_2); delta_1=1. An untied observation still includes
+tied outcomes in its denominator. Use ranking_log_prob for no-tie models.</p>
+</dd></dl>
+
+<dl class="py function objdesc">
+<dt class="sig sig-object highlight sig-wrap py" id="torchdcm.events.best_worst_log_prob">
+<span class="sig-name descname"><span class="pre">best_worst_log_prob</span></span><span class="sig-paren">(</span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#torchdcm.events.best_worst_log_prob" title="torchdcm.events.best_worst_log_prob.scores (Python parameter)"><span class="n"><span class="pre">scores</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#torchdcm.events.best_worst_log_prob" title="torchdcm.events.best_worst_log_prob.best (Python parameter)"><span class="n"><span class="pre">best</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#torchdcm.events.best_worst_log_prob" title="torchdcm.events.best_worst_log_prob.worst (Python parameter)"><span class="n"><span class="pre">worst</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#torchdcm.events.best_worst_log_prob" title="torchdcm.events.best_worst_log_prob.mechanism (Python parameter)"><span class="n"><span class="pre">mechanism</span></span></a><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="s1">'sequential'</span></code></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#torchdcm.events.best_worst_log_prob" title="torchdcm.events.best_worst_log_prob.available (Python parameter)"><span class="n"><span class="pre">available</span></span></a><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="kc">None</span></code></em></span><span class="sig-paren">)</span><a class="headerlink" href="#torchdcm.events.best_worst_log_prob" title="Link to this definition">¶</a></dt>
+<dd><p>Sequential best then worst, or joint MaxDiff pair normalization.</p>
+</dd></dl>
+
+<dl class="py function objdesc">
+<dt class="sig sig-object highlight py" id="torchdcm.events.subset_masks">
+<span class="sig-name descname"><span class="pre">subset_masks</span></span><span class="sig-paren">(</span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#torchdcm.events.subset_masks" title="torchdcm.events.subset_masks.n_items (Python parameter)"><span class="n"><span class="pre">n_items</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#torchdcm.events.subset_masks" title="torchdcm.events.subset_masks.min_size (Python parameter)"><span class="n"><span class="pre">min_size</span></span></a><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="mi">1</span></code></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#torchdcm.events.subset_masks" title="torchdcm.events.subset_masks.max_size (Python parameter)"><span class="n"><span class="pre">max_size</span></span></a><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="kc">None</span></code></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#torchdcm.events.subset_masks" title="torchdcm.events.subset_masks.device (Python parameter)"><span class="n"><span class="pre">device</span></span></a><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="kc">None</span></code></em></span><span class="sig-paren">)</span><a class="headerlink" href="#torchdcm.events.subset_masks" title="Link to this definition">¶</a></dt>
+<dd><p>Exact small-menu enumeration; caller owns constraints on feasible subsets.</p>
+<p>ponytail: exponential enumeration is intentional; use structured partitions
+for large sets instead of claiming general scalable combinatorial choice.</p>
+</dd></dl>
+
+<dl class="py function objdesc">
+<dt class="sig sig-object highlight sig-wrap py" id="torchdcm.allocation.mdcev_log_prob">
+<span class="sig-name descname"><span class="pre">mdcev_log_prob</span></span><span class="sig-paren">(</span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#torchdcm.allocation.mdcev_log_prob" title="torchdcm.allocation.mdcev_log_prob.utility (Python parameter)"><span class="n"><span class="pre">utility</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#torchdcm.allocation.mdcev_log_prob" title="torchdcm.allocation.mdcev_log_prob.quantities (Python parameter)"><span class="n"><span class="pre">quantities</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#torchdcm.allocation.mdcev_log_prob" title="torchdcm.allocation.mdcev_log_prob.gamma (Python parameter)"><span class="n"><span class="pre">gamma</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#torchdcm.allocation.mdcev_log_prob" title="torchdcm.allocation.mdcev_log_prob.prices (Python parameter)"><span class="n"><span class="pre">prices</span></span></a><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="mf">1.0</span></code></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#torchdcm.allocation.mdcev_log_prob" title="torchdcm.allocation.mdcev_log_prob.budget (Python parameter)"><span class="n"><span class="pre">budget</span></span></a><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="kc">None</span></code></em></span><span class="sig-paren">)</span><a class="headerlink" href="#torchdcm.allocation.mdcev_log_prob" title="Link to this definition">¶</a></dt>
+<dd><p>Mixed corner mass/face density, iid unit-scale Gumbel shocks, alpha=0.</p>
+<p>U = exp(V0+e0)*log(x0) + sum_i gamma_i*exp(Vi+ei)*log(1+xi/gamma_i).
+Quantities satisfy p*x=B with x0&gt;0. Density is with respect to positive
+inside quantities, after eliminating outside consumption by the budget.
+Includes Gamma(number_active), unlike implementations omitting constants.
+Fix a utility location (e.g. V0=0); scale is fixed at one.</p>
+</dd></dl>
+
+<dl class="py function objdesc">
+<dt class="sig sig-object highlight py" id="torchdcm.allocation.mdcev_allocate">
+<span class="sig-name descname"><span class="pre">mdcev_allocate</span></span><span class="sig-paren">(</span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#torchdcm.allocation.mdcev_allocate" title="torchdcm.allocation.mdcev_allocate.utility (Python parameter)"><span class="n"><span class="pre">utility</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#torchdcm.allocation.mdcev_allocate" title="torchdcm.allocation.mdcev_allocate.gamma (Python parameter)"><span class="n"><span class="pre">gamma</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#torchdcm.allocation.mdcev_allocate" title="torchdcm.allocation.mdcev_allocate.budget (Python parameter)"><span class="n"><span class="pre">budget</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#torchdcm.allocation.mdcev_allocate" title="torchdcm.allocation.mdcev_allocate.prices (Python parameter)"><span class="n"><span class="pre">prices</span></span></a><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="mf">1.0</span></code></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#torchdcm.allocation.mdcev_allocate" title="torchdcm.allocation.mdcev_allocate.shocks (Python parameter)"><span class="n"><span class="pre">shocks</span></span></a><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="kc">None</span></code></em></span><span class="sig-paren">)</span><a class="headerlink" href="#torchdcm.allocation.mdcev_allocate" title="Link to this definition">¶</a></dt>
+<dd><p>Optimal quantities for specified shocks (zero shocks if omitted).</p>
+<p>This is a conditional allocation, not mean demand. Average explicitly over
+Gumbel draws for mean demand. Derivatives apply within a fixed active set;
+active-set switches are not twice differentiable.</p>
+</dd></dl>
+
+<dl class="py function objdesc">
+<dt class="sig sig-object highlight py" id="torchdcm.mechanisms.consideration_log_probs">
+<span class="sig-name descname"><span class="pre">consideration_log_probs</span></span><span class="sig-paren">(</span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#torchdcm.mechanisms.consideration_log_probs" title="torchdcm.mechanisms.consideration_log_probs.utility (Python parameter)"><span class="n"><span class="pre">utility</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#torchdcm.mechanisms.consideration_log_probs" title="torchdcm.mechanisms.consideration_log_probs.sets (Python parameter)"><span class="n"><span class="pre">sets</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#torchdcm.mechanisms.consideration_log_probs" title="torchdcm.mechanisms.consideration_log_probs.set_logits (Python parameter)"><span class="n"><span class="pre">set_logits</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#torchdcm.mechanisms.consideration_log_probs" title="torchdcm.mechanisms.consideration_log_probs.outside (Python parameter)"><span class="n"><span class="pre">outside</span></span></a><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="mi">0</span></code></em></span><span class="sig-paren">)</span><a class="headerlink" href="#torchdcm.mechanisms.consideration_log_probs" title="Link to this definition">¶</a></dt>
+<dd><p>Exact mixture over declared small consideration sets, with an outside good.</p>
+<p>sets[C,J] is a unique boolean support; logits[…,C] specify its distribution.
+Conditional choice is Logit. This is a parametric mixture, not nonparametric
+identification of attention. A set distribution may depend on observed data.</p>
+</dd></dl>
+
+<dl class="py class objdesc">
+<dt class="sig sig-object highlight py" id="torchdcm.mechanisms.SetUtility">
+<em class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">SetUtility</span></span><span class="sig-paren">(</span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#torchdcm.mechanisms.SetUtility" title="torchdcm.mechanisms.SetUtility.__init__.encoder (Python parameter)"><span class="n"><span class="pre">encoder</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#torchdcm.mechanisms.SetUtility" title="torchdcm.mechanisms.SetUtility.__init__.head (Python parameter)"><span class="n"><span class="pre">head</span></span></a></em></span><span class="sig-paren">)</span><a class="headerlink" href="#torchdcm.mechanisms.SetUtility" title="Link to this definition">¶</a></dt>
+<dd><p>Permutation-equivariant scores from any shared encoder and scalar head.</p>
+<p>The head consumes [item embedding, masked mean menu embedding]. Network
+structure belongs to the application; inference/normalization remain separate.</p>
+</dd></dl>
+
+<dl class="py function objdesc">
+<dt class="sig sig-object highlight sig-wrap py" id="torchdcm.continuous.censored_normal_log_prob">
+<span class="sig-name descname"><span class="pre">censored_normal_log_prob</span></span><span class="sig-paren">(</span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#torchdcm.continuous.censored_normal_log_prob" title="torchdcm.continuous.censored_normal_log_prob.value (Python parameter)"><span class="n"><span class="pre">value</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#torchdcm.continuous.censored_normal_log_prob" title="torchdcm.continuous.censored_normal_log_prob.mean (Python parameter)"><span class="n"><span class="pre">mean</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#torchdcm.continuous.censored_normal_log_prob" title="torchdcm.continuous.censored_normal_log_prob.scale (Python parameter)"><span class="n"><span class="pre">scale</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#torchdcm.continuous.censored_normal_log_prob" title="torchdcm.continuous.censored_normal_log_prob.lower (Python parameter)"><span class="n"><span class="pre">lower</span></span></a><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="o">-</span><span class="n">inf</span></code></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#torchdcm.continuous.censored_normal_log_prob" title="torchdcm.continuous.censored_normal_log_prob.upper (Python parameter)"><span class="n"><span class="pre">upper</span></span></a><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="n">inf</span></code></em></span><span class="sig-paren">)</span><a class="headerlink" href="#torchdcm.continuous.censored_normal_log_prob" title="Link to this definition">¶</a></dt>
+<dd><p>Two-sided censoring: endpoint atoms plus density in the open interval.</p>
+</dd></dl>
+
+<dl class="py function objdesc">
+<dt class="sig sig-object highlight sig-wrap py" id="torchdcm.continuous.truncated_normal_log_prob">
+<span class="sig-name descname"><span class="pre">truncated_normal_log_prob</span></span><span class="sig-paren">(</span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#torchdcm.continuous.truncated_normal_log_prob" title="torchdcm.continuous.truncated_normal_log_prob.value (Python parameter)"><span class="n"><span class="pre">value</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#torchdcm.continuous.truncated_normal_log_prob" title="torchdcm.continuous.truncated_normal_log_prob.mean (Python parameter)"><span class="n"><span class="pre">mean</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#torchdcm.continuous.truncated_normal_log_prob" title="torchdcm.continuous.truncated_normal_log_prob.scale (Python parameter)"><span class="n"><span class="pre">scale</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#torchdcm.continuous.truncated_normal_log_prob" title="torchdcm.continuous.truncated_normal_log_prob.lower (Python parameter)"><span class="n"><span class="pre">lower</span></span></a><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="o">-</span><span class="n">inf</span></code></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#torchdcm.continuous.truncated_normal_log_prob" title="torchdcm.continuous.truncated_normal_log_prob.upper (Python parameter)"><span class="n"><span class="pre">upper</span></span></a><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="n">inf</span></code></em></span><span class="sig-paren">)</span><a class="headerlink" href="#torchdcm.continuous.truncated_normal_log_prob" title="Link to this definition">¶</a></dt>
+<dd><p>Density conditional on being strictly inside the declared observation interval.</p>
+</dd></dl>
+
+<dl class="py function objdesc">
+<dt class="sig sig-object highlight sig-wrap py" id="torchdcm.continuous.selection_normal_log_prob">
+<span class="sig-name descname"><span class="pre">selection_normal_log_prob</span></span><span class="sig-paren">(</span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#torchdcm.continuous.selection_normal_log_prob" title="torchdcm.continuous.selection_normal_log_prob.selected (Python parameter)"><span class="n"><span class="pre">selected</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#torchdcm.continuous.selection_normal_log_prob" title="torchdcm.continuous.selection_normal_log_prob.outcome (Python parameter)"><span class="n"><span class="pre">outcome</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#torchdcm.continuous.selection_normal_log_prob" title="torchdcm.continuous.selection_normal_log_prob.mean (Python parameter)"><span class="n"><span class="pre">mean</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#torchdcm.continuous.selection_normal_log_prob" title="torchdcm.continuous.selection_normal_log_prob.scale (Python parameter)"><span class="n"><span class="pre">scale</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#torchdcm.continuous.selection_normal_log_prob" title="torchdcm.continuous.selection_normal_log_prob.index (Python parameter)"><span class="n"><span class="pre">index</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#torchdcm.continuous.selection_normal_log_prob" title="torchdcm.continuous.selection_normal_log_prob.correlation (Python parameter)"><span class="n"><span class="pre">correlation</span></span></a></em></span><span class="sig-paren">)</span><a class="headerlink" href="#torchdcm.continuous.selection_normal_log_prob" title="Link to this definition">¶</a></dt>
+<dd><p>Joint Gaussian sample-selection likelihood, including unselected records.</p>
+<p>Selected iff index + e_selection &gt; 0; e_selection and standardized outcome
+errors have unit variance and correlation rho. Unselected outcomes may be NaN.</p>
+</dd></dl>
+
+<dl class="py function objdesc">
+<dt class="sig sig-object highlight py" id="torchdcm.probit.multinomial_probit_log_probs">
+<span class="sig-name descname"><span class="pre">multinomial_probit_log_probs</span></span><span class="sig-paren">(</span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#torchdcm.probit.multinomial_probit_log_probs" title="torchdcm.probit.multinomial_probit_log_probs.utility (Python parameter)"><span class="n"><span class="pre">utility</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#torchdcm.probit.multinomial_probit_log_probs" title="torchdcm.probit.multinomial_probit_log_probs.covariance (Python parameter)"><span class="n"><span class="pre">covariance</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#torchdcm.probit.multinomial_probit_log_probs" title="torchdcm.probit.multinomial_probit_log_probs.order (Python parameter)"><span class="n"><span class="pre">order</span></span></a><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="mi">64</span></code></em></span><span class="sig-paren">)</span><a class="headerlink" href="#torchdcm.probit.multinomial_probit_log_probs" title="Link to this definition">¶</a></dt>
+<dd><p>Three full-menu alternatives, correlated normal errors, fixed scale/location.</p>
+<p>utility[…,3], covariance[…,3,3]. User identifies the parameterization.
+A larger model can replace only this probability kernel, retaining estimation.</p>
+</dd></dl>
+
+<dl class="py function objdesc">
+<dt class="sig sig-object highlight sig-wrap py" id="torchdcm.response_time.ddm_log_prob">
+<span class="sig-name descname"><span class="pre">ddm_log_prob</span></span><span class="sig-paren">(</span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#torchdcm.response_time.ddm_log_prob" title="torchdcm.response_time.ddm_log_prob.upper_choice (Python parameter)"><span class="n"><span class="pre">upper_choice</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#torchdcm.response_time.ddm_log_prob" title="torchdcm.response_time.ddm_log_prob.response_time (Python parameter)"><span class="n"><span class="pre">response_time</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#torchdcm.response_time.ddm_log_prob" title="torchdcm.response_time.ddm_log_prob.drift (Python parameter)"><span class="n"><span class="pre">drift</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#torchdcm.response_time.ddm_log_prob" title="torchdcm.response_time.ddm_log_prob.boundary (Python parameter)"><span class="n"><span class="pre">boundary</span></span></a><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="mf">1.0</span></code></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#torchdcm.response_time.ddm_log_prob" title="torchdcm.response_time.ddm_log_prob.start (Python parameter)"><span class="n"><span class="pre">start</span></span></a><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="mf">0.5</span></code></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#torchdcm.response_time.ddm_log_prob" title="torchdcm.response_time.ddm_log_prob.nondecision (Python parameter)"><span class="n"><span class="pre">nondecision</span></span></a><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="mf">0.0</span></code></em></span><span class="sig-paren">)</span><a class="headerlink" href="#torchdcm.response_time.ddm_log_prob" title="Link to this definition">¶</a></dt>
+<dd><p>Unit diffusion, fixed a/z/nondecision time; trainable drift, no trial variability.</p>
+<p>upper_choice is boolean. Density is joint in choice and time, not a
+conditional RT density given choice. Image/eigen expansions use 21/32 terms
+after switching at t/a^2=0.12. Validated for .02&lt;=z/a&lt;=.98.</p>
+</dd></dl>
+
+<dl class="py function objdesc">
+<dt class="sig sig-object highlight sig-wrap py" id="torchdcm.equilibrium.rational_inattention">
+<span class="sig-name descname"><span class="pre">rational_inattention</span></span><span class="sig-paren">(</span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#torchdcm.equilibrium.rational_inattention" title="torchdcm.equilibrium.rational_inattention.utility (Python parameter)"><span class="n"><span class="pre">utility</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#torchdcm.equilibrium.rational_inattention" title="torchdcm.equilibrium.rational_inattention.prior (Python parameter)"><span class="n"><span class="pre">prior</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#torchdcm.equilibrium.rational_inattention" title="torchdcm.equilibrium.rational_inattention.cost (Python parameter)"><span class="n"><span class="pre">cost</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#torchdcm.equilibrium.rational_inattention" title="torchdcm.equilibrium.rational_inattention.tolerance (Python parameter)"><span class="n"><span class="pre">tolerance</span></span></a><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="mf">1e-10</span></code></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#torchdcm.equilibrium.rational_inattention" title="torchdcm.equilibrium.rational_inattention.max_iter (Python parameter)"><span class="n"><span class="pre">max_iter</span></span></a><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="mi">4000</span></code></em></span><span class="sig-paren">)</span><a class="headerlink" href="#torchdcm.equilibrium.rational_inattention" title="Link to this definition">¶</a></dt>
+<dd><p>Finite-state Shannon RI; strictly positive regular action support only.</p>
+<p>utility[state,action], prior[state], positive information cost. Returns
+(conditional policy, unconditional action probabilities). Boundary optima
+require support selection and are deliberately rejected by this interface.</p>
+</dd></dl>
+
+<dl class="py function objdesc">
+<dt class="sig sig-object highlight py" id="torchdcm.equilibrium.social_probabilities">
+<span class="sig-name descname"><span class="pre">social_probabilities</span></span><span class="sig-paren">(</span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#torchdcm.equilibrium.social_probabilities" title="torchdcm.equilibrium.social_probabilities.index (Python parameter)"><span class="n"><span class="pre">index</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#torchdcm.equilibrium.social_probabilities" title="torchdcm.equilibrium.social_probabilities.network (Python parameter)"><span class="n"><span class="pre">network</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#torchdcm.equilibrium.social_probabilities" title="torchdcm.equilibrium.social_probabilities.interaction (Python parameter)"><span class="n"><span class="pre">interaction</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="o"><span class="pre">**</span></span><a class="n reference internal" href="#torchdcm.equilibrium.social_probabilities" title="torchdcm.equilibrium.social_probabilities.solver_options (Python parameter)"><span class="n"><span class="pre">solver_options</span></span></a></em></span><span class="sig-paren">)</span><a class="headerlink" href="#torchdcm.equilibrium.social_probabilities" title="Link to this definition">¶</a></dt>
+<dd><p>Unique binary-logit mean-field fixed point; row-stochastic nonnegative network.</p>
+<p>abs(interaction)&lt;4 guarantees contraction because sigmoid’&lt;=1/4.
+This is an equilibrium mean-field model, not a joint distribution over
+correlated simultaneous realized actions.</p>
+</dd></dl>
+
+<dl class="py function objdesc">
+<dt class="sig sig-object highlight sig-wrap py" id="torchdcm.equilibrium.dynamic_game_values">
+<span class="sig-name descname"><span class="pre">dynamic_game_values</span></span><span class="sig-paren">(</span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#torchdcm.equilibrium.dynamic_game_values" title="torchdcm.equilibrium.dynamic_game_values.payoffs (Python parameter)"><span class="n"><span class="pre">payoffs</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#torchdcm.equilibrium.dynamic_game_values" title="torchdcm.equilibrium.dynamic_game_values.transition (Python parameter)"><span class="n"><span class="pre">transition</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#torchdcm.equilibrium.dynamic_game_values" title="torchdcm.equilibrium.dynamic_game_values.discount (Python parameter)"><span class="n"><span class="pre">discount</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#torchdcm.equilibrium.dynamic_game_values" title="torchdcm.equilibrium.dynamic_game_values.initial (Python parameter)"><span class="n"><span class="pre">initial</span></span></a><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="kc">None</span></code></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="o"><span class="pre">**</span></span><a class="n reference internal" href="#torchdcm.equilibrium.dynamic_game_values" title="torchdcm.equilibrium.dynamic_game_values.solver_options (Python parameter)"><span class="n"><span class="pre">solver_options</span></span></a></em></span><span class="sig-paren">)</span><a class="headerlink" href="#torchdcm.equilibrium.dynamic_game_values" title="Link to this definition">¶</a></dt>
+<dd><p>Two-player, binary-action, finite-public-state dynamic Logit game.</p>
+<p>payoffs[2,S,2,2], transition[S,2,2,S]. Returns Q[2,S,2]. Private shocks are
+independent centered EV1. Computes one convergent regular branch from
+initial; no uniqueness claim, branch search, or NPL/EPL implementation.</p>
+</dd></dl>
+
+<dl class="py function objdesc">
+<dt class="sig sig-object highlight py" id="torchdcm.trajectory.finite_horizon">
+<span class="sig-name descname"><span class="pre">finite_horizon</span></span><span class="sig-paren">(</span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#torchdcm.trajectory.finite_horizon" title="torchdcm.trajectory.finite_horizon.reward (Python parameter)"><span class="n"><span class="pre">reward</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#torchdcm.trajectory.finite_horizon" title="torchdcm.trajectory.finite_horizon.transition (Python parameter)"><span class="n"><span class="pre">transition</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#torchdcm.trajectory.finite_horizon" title="torchdcm.trajectory.finite_horizon.terminal (Python parameter)"><span class="n"><span class="pre">terminal</span></span></a><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="kc">None</span></code></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#torchdcm.trajectory.finite_horizon" title="torchdcm.trajectory.finite_horizon.mode (Python parameter)"><span class="n"><span class="pre">mode</span></span></a><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="s1">'causal'</span></code></em></span><span class="sig-paren">)</span><a class="headerlink" href="#torchdcm.trajectory.finite_horizon" title="Link to this definition">¶</a></dt>
+<dd><p>reward[T,S,A], transition broadcastable to [T,S,A,S].</p>
+<p>causal: Q=r+E_P[V’]; transitions retain the physical law.
+trajectory: Q=r+log E_P[exp(V’)]; globally normalized trajectory utility
+tilts stochastic transitions too. They coincide for deterministic dynamics.
+Terminal values are rewards, and temperature is fixed at one.</p>
+</dd></dl>
+
+<dl class="py function objdesc">
+<dt class="sig sig-object highlight py" id="torchdcm.supply.bertrand_markups">
+<span class="sig-name descname"><span class="pre">bertrand_markups</span></span><span class="sig-paren">(</span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#torchdcm.supply.bertrand_markups" title="torchdcm.supply.bertrand_markups.shares (Python parameter)"><span class="n"><span class="pre">shares</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#torchdcm.supply.bertrand_markups" title="torchdcm.supply.bertrand_markups.prices (Python parameter)"><span class="n"><span class="pre">prices</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="o"><span class="pre">*</span></span><a class="n reference internal" href="#torchdcm.supply.bertrand_markups" title="torchdcm.supply.bertrand_markups.parameters (Python parameter)"><span class="n"><span class="pre">parameters</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#torchdcm.supply.bertrand_markups" title="torchdcm.supply.bertrand_markups.ownership (Python parameter)"><span class="n"><span class="pre">ownership</span></span></a><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="kc">None</span></code></em></span><span class="sig-paren">)</span><a class="headerlink" href="#torchdcm.supply.bertrand_markups" title="Link to this definition">¶</a></dt>
+<dd><p>Solve differentiated-product FOCs, holding supplied structural errors fixed.</p>
+<p>shares(prices,*parameters)-&gt;inside shares[J]. ownership[i,j]=1 iff the
+same firm owns products i,j. No constraints or global optimality certificate.
+Structural errors must not be re-inverted as prices are differentiated.</p>
+</dd></dl>
+
+<dl class="py function objdesc">
+<dt class="sig sig-object highlight sig-wrap py" id="torchdcm.supply.bertrand_prices">
+<span class="sig-name descname"><span class="pre">bertrand_prices</span></span><span class="sig-paren">(</span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#torchdcm.supply.bertrand_prices" title="torchdcm.supply.bertrand_prices.shares (Python parameter)"><span class="n"><span class="pre">shares</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#torchdcm.supply.bertrand_prices" title="torchdcm.supply.bertrand_prices.costs (Python parameter)"><span class="n"><span class="pre">costs</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#torchdcm.supply.bertrand_prices" title="torchdcm.supply.bertrand_prices.initial (Python parameter)"><span class="n"><span class="pre">initial</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="o"><span class="pre">*</span></span><a class="n reference internal" href="#torchdcm.supply.bertrand_prices" title="torchdcm.supply.bertrand_prices.parameters (Python parameter)"><span class="n"><span class="pre">parameters</span></span></a></em>, </span><span class="sig-param-decl"><em class="sig-param"><a class="n reference internal" href="#torchdcm.supply.bertrand_prices" title="torchdcm.supply.bertrand_prices.ownership (Python parameter)"><span class="n"><span class="pre">ownership</span></span></a><span class="o"><span class="pre">=</span></span><code class="code python default_value docutils literal highlight highlight-python"><span class="kc">None</span></code></em>, </span><span class="sig-param-decl"><em class="sig-param"><span class="o"><span class="pre">**</span></span><a class="n reference internal" href="#torchdcm.supply.bertrand_prices" title="torchdcm.supply.bertrand_prices.solver_options (Python parameter)"><span class="n"><span class="pre">solver_options</span></span></a></em></span><span class="sig-paren">)</span><a class="headerlink" href="#torchdcm.supply.bertrand_prices" title="Link to this definition">¶</a></dt>
+<dd><p>One regular interior price-equilibrium root; user selects the starting branch.</p>
+</dd></dl>
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="estimation.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Estimation, inference and queries">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Estimation, inference and queries
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../examples/index.html" class="md-footer__link md-footer__link--next" aria-label="Next: Complete examples">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Complete examples
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  
+  
+  <div class="md-footer-meta md-typeset">
+    
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-footer-copyright__highlight">
+        &#169; Copyright 2026, TorchDCM contributors.
+        
+    </div>
+  
+    Created using
+    <a href="https://www.sphinx-doc.org/" target="_blank" rel="noopener">Sphinx</a>
+    8.2.3.
+     and
+    <a href="https://github.com/jbms/sphinx-immaterial/" target="_blank" rel="noopener">Sphinx-Immaterial</a>
+  
+</div>
+      
+    </div>
+    
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.expand", "navigation.top", "navigation.footer", "toc.follow", "search.highlight"], "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+      
+        <script src="../_static/sphinx_immaterial_theme.32136f45f91ae6956.min.js?v=a7a9472a"></script>
+    
+  </body>
+</html>
